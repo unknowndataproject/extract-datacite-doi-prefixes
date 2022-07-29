@@ -33,8 +33,14 @@ def extract_prefixes(datacite_provider):
 
   
 if __name__ == "__main__":
-  datacite_provider = get_datacite_provider()
-  datacite_prefixes = extract_prefixes(datacite_provider)
-
-  json.dump(datacite_provider, open(f"data/datacite_provider_{today}.json", "w"))
-  json.dump(datacite_provider, open(f"data/datacite_doi_prefixes_{today}.json", "w"))
+    datacite_provider = get_datacite_provider()
+    datacite_prefixes = extract_prefixes(datacite_provider)
+    # save the data as json in data folder (not synced with repo)    
+    data_path = Path("data")
+    data_path.mkdir(parents=True, exist_ok=True)
+    provider_file = data_path / Path(f"datacite_provider_{today}.json")
+    with provider_file.open("w") as f:
+        json.dump(datacite_provider, f)
+    prefix_path = data_path / Path(f"datacite_doi_prefixes_{today}.json")
+    with prefix_path.open("w") as f:
+        json.dump(datacite_provider, f)
