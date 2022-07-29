@@ -44,4 +44,4 @@ if __name__ == "__main__":
         json.dump(datacite_provider, f)
     prefix_path = data_path / Path(f"datacite_doi_prefixes_{today}.json")
     with prefix_path.open("w") as f:
-        json.dump(datacite_provider, f)
+        json.dump(datacite_prefixes, f)
